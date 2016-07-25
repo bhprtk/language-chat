@@ -9,11 +9,11 @@ import SocketIO from 'socket.io';
 
 // import users from './routes/users';
 
-let PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
-let app = express();
-let server = http.Server(app);
-let io = new SocketIO(server);
+const app = express();
+const server = http.Server(app);
+const io = new SocketIO(server);
 
 
 

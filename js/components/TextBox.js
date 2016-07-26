@@ -9,14 +9,15 @@ export default class TextBox extends React.Component {
 		this.state = {
 			messages: []
 		}
-		this.submitMessage = this.submitMessage.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
 
 	}
 
-	submitMessage(e) {
-		e.preventDefault();
-		this.setState({messages: [this.state.message, ...this.state.messages]});
+	componentDidMount() {
+		this.socket = io('/');
+		this.socket.on('message', message => {
+			this.setState({ messages: [message, ...this.state.messages] });
+		})
 	}
 
 	handleSubmit(event) {
@@ -27,13 +28,12 @@ export default class TextBox extends React.Component {
 				from: 'Me'
 			}
 			this.setState({ messages: [message, ...this.state.messages] });
+			this.socket.emit('message', body);
 			event.target.value = '';
 		}
 	}
 
 	render() {
-
-		// let messages = this.state.messages.reverse();
 
 		return (
 			<div className="container" style={styles.container}>

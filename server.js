@@ -35,6 +35,6 @@ io.on('connection', socket => {
 
 // app.use('/users', users);
 
-app.listen(PORT, err => {
+server.listen(PORT, err => {
 	console.log(err || `Server listening on port ${PORT}`);
 });

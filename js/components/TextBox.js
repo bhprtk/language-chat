@@ -16,6 +16,7 @@ export default class TextBox extends React.Component {
 	componentDidMount() {
 		this.socket = io('/');
 		this.socket.on('message', message => {
+			console.log('message', message);
 			this.setState({ messages: [message, ...this.state.messages] });
 		})
 	}
@@ -27,7 +28,7 @@ export default class TextBox extends React.Component {
 				body,
 				from: 'Me'
 			}
-			this.setState({ messages: [message, ...this.state.messages] });
+			// this.setState({ messages: [message, ...this.state.messages] });
 			this.socket.emit('message', body);
 			event.target.value = '';
 		}

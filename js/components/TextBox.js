@@ -10,11 +10,25 @@ export default class TextBox extends React.Component {
 			messages: []
 		}
 		this.submitMessage = this.submitMessage.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+
 	}
 
 	submitMessage(e) {
 		e.preventDefault();
 		this.setState({messages: [this.state.message, ...this.state.messages]});
+	}
+
+	handleSubmit(event) {
+		const body = event.target.value;
+		if(event.keyCode === 13 && body) {
+			const message = {
+				body,
+				from: 'Me'
+			}
+			this.setState({ messages: [message, ...this.state.messages] });
+			event.target.value = '';
+		}
 	}
 
 	render() {
@@ -23,26 +37,18 @@ export default class TextBox extends React.Component {
 
 		return (
 			<div className="container" style={styles.container}>
-				<form
-					className="form-group">
+
 					<input
 						className="form-control"
 						type="text"
 						placeholder="Enter a message.."
-						onChange={ e => this.setState({message: e.target.value })} />
+						onKeyUp={this.handleSubmit}
+						/>
 
-					<button
-						type="submit"
-						className="btn btn-primary-outline"
-						onClick={this.submitMessage}>
-						Send
-					</button>
-
-				</form>
 
 				<ul>
 					{this.state.messages.map((message, index) => {
-						return <li key={index}>{message}</li>
+						return <li key={index}>{message.body}</li>
 					})}
 				</ul>
 			</div>

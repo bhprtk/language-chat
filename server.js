@@ -24,6 +24,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
+io.on('connection', socket => {
+	socket.on('message', body => {
+		socket.broadcast.emit('message', {
+			body,
+			from: socket.id.slice(8)
+		})
+	})
+})
 
 // app.use('/users', users);
 

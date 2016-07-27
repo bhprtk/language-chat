@@ -32,9 +32,9 @@ io.on('connection', socket => {
 		console.log('body', body);
 
 		request
-			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=hi&q=${body}`, (error, response, body) => {
+			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=en&q=${body}`, (error, response, body) => {
 				let newBody = JSON.parse(body);
-				// console.log('newBody.data.translations[0].translatedText', newBody.data.translations[0].translatedText);
+				console.log('newBody.data.translations[0].translatedText', newBody.data.translations[0].translatedText);
 				console.log('body', body);
 				socket.broadcast.emit('message', {
 					body: newBody.data.translations[0].translatedText,

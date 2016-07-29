@@ -20,7 +20,6 @@ export default class TextBox extends React.Component {
 			// let newMessage = JSON.parse(message.body);
 			// console.log('newMessage', newMessage.data.translations[0].translatedText);
 			this.setState({ messages: [message, ...this.state.messages] });
-			console.log('this.state', this.state);
 		})
 	}
 
@@ -28,23 +27,39 @@ export default class TextBox extends React.Component {
 		const newMessage = event.target.value;
 		if(event.keyCode === 13 && newMessage) {
 			const message = {
-				body: newMessage,
-				from: 'Me'
+				message: newMessage,
+				from: this.props.userName
 			}
 			this.setState({ messages: [message, ...this.state.messages] });
-			this.socket.emit('message', newMessage);
+			this.socket.emit('message', message);
 			event.target.value = '';
 		}
 	}
 
 	render() {
-
+		console.log('this.props', this.props);
 		return (
 			<div className="container" style={styles.container}>
 
 				<ul>
 					{this.state.messages.map((message, index) => {
-						return <li key={index}>{message.body}</li>
+						return <div key={index}>
+							<span style={styles.from}>
+								<If condition={message.from === this.props.userName}>
+									you
+								</If>
+
+								<If condition={message.from !== this.props.userName}>
+									{message.from}
+
+								</If>
+
+							</span>
+							<span style={styles.message}>
+
+								{message.message}
+							</span>
+						</div>
 					})}
 				</ul>
 
@@ -72,12 +87,19 @@ const styles = {
 	},
 
 	sendMessage: {
-		bottom: 10,
+		bottom: 20,
 		position: 'fixed',
 		width: '100%'
 	},
 	textBox: {
 		height: 50,
 		marginRight: 10
+	},
+	from: {
+		color: 'green'
+	},
+	message: {
+		color: 'red',
+		marginLeft: 10
 	}
 }

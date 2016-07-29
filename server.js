@@ -28,17 +28,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
 
 io.on('connection', socket => {
-	socket.on('message', body => {
-		console.log('body', body);
+	socket.on('message', message => {
+		console.log('message', message);
 
 		request
-			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=en&q=${body}`, (error, response, body) => {
+			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=en&q=${message.message}`, (error, response, body) => {
 				let newBody = JSON.parse(body);
 				console.log('newBody.data.translations[0].translatedText', newBody.data.translations[0].translatedText);
 				console.log('body', body);
 				socket.broadcast.emit('message', {
-					body: newBody.data.translations[0].translatedText,
-					from: socket.id.slice(8)
+					message: newBody.data.translations[0].translatedText,
+					from: message.from
 				})
 			})
 

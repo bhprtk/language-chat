@@ -50,7 +50,7 @@ export default class TextBox extends React.Component {
 								</If>
 
 								<If condition={message.from !== this.props.userName}>
-									{message.from}
+									{message.from} 
 
 								</If>
 

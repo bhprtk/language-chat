@@ -24,12 +24,12 @@ export default class UserName extends React.Component {
 
 	render() {
 		console.log('this.state.userName', this.state.userName);
+
 		return (
 			<div>
 				<If condition={!this.state.userName}>
 					<div className="container">
 
-						<div>
 							<input
 								className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2"
 								type="text"
@@ -38,12 +38,20 @@ export default class UserName extends React.Component {
 								style={styles.textBox}
 								/>
 
-							<select class="form-control col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-								<option value="en">English</option>
-								<option value="sp">Spanish</option>
-							</select>
-
-						</div>
+							<div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+								<select
+									className="form-control"
+									style={styles.select}>
+									<option value="en">English</option>
+									<option value="sp">Spanish</option>
+								</select>
+								<Select
+								    name="form-field-name"
+								    value="one"
+								    options={options}
+								    onChange={logChange}
+								/>
+							</div>
 					</div>
 				</If>
 
@@ -60,5 +68,9 @@ const styles = {
 		height: 50,
 		marginTop: 100,
 
+	},
+	select: {
+		height: 50,
+		marginTop: 20
 	}
 }

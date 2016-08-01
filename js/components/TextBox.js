@@ -1,6 +1,8 @@
 import React from 'react';
 import io from 'socket.io-client';
 
+import DisplayMessage from './DisplayMessage';
+
 export default class TextBox extends React.Component {
 
 	constructor(props) {
@@ -17,8 +19,6 @@ export default class TextBox extends React.Component {
 		this.socket = io('/');
 		this.socket.on('message', message => {
 			console.log('message', message);
-			// let newMessage = JSON.parse(message.body);
-			// console.log('newMessage', newMessage.data.translations[0].translatedText);
 			this.setState({ messages: [message, ...this.state.messages] });
 		})
 	}
@@ -41,27 +41,7 @@ export default class TextBox extends React.Component {
 		return (
 			<div className="container" style={styles.container}>
 
-				<ul>
-					{this.state.messages.map((message, index) => {
-						return <div key={index}>
-							<span style={styles.from}>
-								<If condition={message.from === this.props.userNameData}>
-									you
-								</If>
-
-								<If condition={message.from !== this.props.userNameData}>
-									{message.from}
-
-								</If>
-
-							</span>
-							<span style={styles.message}>
-
-								{message.message}
-							</span>
-						</div>
-					})}
-				</ul>
+				<DisplayMessage messages={this.state.messages} userNameData={this.state.userNameData}/>
 
 				<div className="row" style={styles.sendMessage}>
 					<input

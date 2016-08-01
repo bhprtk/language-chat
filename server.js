@@ -33,9 +33,15 @@ app.use(express.static('public'));
 io.on('connection', socket => {
 	socket.on('message', message => {
 		console.log('message', message);
+		let _target;
+		if(message.preferedLanguage === 'en') {
+			_target = 'es';
+		} else if(message.preferedLanguage === 'es') {
+			_target = 'en';
+		}
 
 		request
-			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=en&q=${message.message}`, (error, response, body) => {
+			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=${_target}&q=${message.message}`, (error, response, body) => {
 				let newBody = JSON.parse(body);
 				console.log('newBody.data.translations[0].translatedText', newBody.data.translations[0].translatedText);
 				console.log('body', body);

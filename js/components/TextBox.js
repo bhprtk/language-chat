@@ -29,7 +29,8 @@ export default class TextBox extends React.Component {
 		if(event.keyCode === 13 && newMessage) {
 			const message = {
 				message: newMessage,
-				from: this.props.userNameData.userName
+				from: this.props.userNameData.userName,
+				preferedLanguage: this.props.userNameData.language
 			}
 			this.setState({ messages: [message, ...this.state.messages] });
 			this.socket.emit('message', message);

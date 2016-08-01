@@ -59,7 +59,7 @@ export default class UserName extends React.Component {
 										onChange={e => this.setState({language: e.target.value})}>
 
 									<option value="en">English</option>
-									<option value="sp">Spanish</option>
+									<option value="es">Spanish</option>
 
 									</select>
 								</div>

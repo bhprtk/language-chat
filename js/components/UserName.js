@@ -17,6 +17,7 @@ export default class UserName extends React.Component {
 
 	submitForm(event) {
 		event.preventDefault();
+
 		this.setState({
 			textBoxData: {
 				userName: this.state.userName,
@@ -26,12 +27,17 @@ export default class UserName extends React.Component {
 		});
 	}
 
-	// handleSubmit(event) {
-	// 	const userName = event.target.value;
-	// 	if(event.keyCode === 13 && userName) {
-	// 		event.target.value = '';
-	// 	}
-	// }
+	// <div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+	// 	<select
+	// 		className="form-control"
+	// 		style={styles.select}
+	// 		onChange={e => this.setState({language: e.target.value})}>
+	//
+	// 	<option value="en">English</option>
+	// 	<option value="es">Spanish</option>
+	//
+	// 	</select>
+	// </div>
 
 	render() {
 
@@ -41,28 +47,26 @@ export default class UserName extends React.Component {
 				<If condition={!this.state.callTextBox}>
 					<div className="container">
 
+							<h1 className="text-md-center text-sm-center text-xs-center">Language Chat</h1>
+
 						<form
 							onSubmit={this.submitForm}
-							className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+							className="form-group col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
 
 							<input
+								className="form-control"
 								type="text"
 								placeholder="Enter username"
 								onChange={e => this.setState({userName: e.target.value})}
 								style={styles.textBox}
+								required
 								/>
 
-								<div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-									<select
-										className="form-control"
-										style={styles.select}
-										onChange={e => this.setState({language: e.target.value})}>
+							<div className="row">
 
-									<option value="en">English</option>
-									<option value="es">Spanish</option>
+							</div>
 
-									</select>
-								</div>
+
 
 							<button
 							 	className="btn btn-default"

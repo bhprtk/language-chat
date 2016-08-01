@@ -30,7 +30,11 @@ app.use(express.static('public'));
 // 'https://www.googleapis.com/customsearch/v1?key= AIzaSyAcAf8p4Oh_4bBRhm3mkW80nrhmlzZj1Nk&cx=017576662512468239146:omuauf_lfve&q=lectures'
 // ''
 
+let connectionCount = 0;
+
 io.on('connection', socket => {
+	connectionCount++;
+	console.log('count', connectionCount);
 	socket.on('message', message => {
 		console.log('message', message);
 		let _target;

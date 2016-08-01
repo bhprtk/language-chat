@@ -45,12 +45,12 @@ export default class TextBox extends React.Component {
 					{this.state.messages.map((message, index) => {
 						return <div key={index}>
 							<span style={styles.from}>
-								<If condition={message.from === this.props.userName}>
+								<If condition={message.from === this.props.userNameData}>
 									you
 								</If>
 
-								<If condition={message.from !== this.props.userName}>
-									{message.from} 
+								<If condition={message.from !== this.props.userNameData}>
+									{message.from}
 
 								</If>
 

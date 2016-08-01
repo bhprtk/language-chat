@@ -7,56 +7,77 @@ export default class UserName extends React.Component {
 		super(props);
 
 		this.state = {
-			userName: null
+			userName: '',
+			callTextBox: false,
 		}
 
-		this.handleSubmit = this.handleSubmit.bind(this);
+		// this.handleSubmit = this.handleSubmit.bind(this);
+		this.submitForm = this.submitForm.bind(this);
 	}
 
-	handleSubmit(event) {
-		const userName = event.target.value;
-		if(event.keyCode === 13 && userName) {
-			this.setState({userName})
-			event.target.value = '';
-		}
-
+	submitForm(event) {
+		event.preventDefault();
+		this.setState({
+			textBoxData: {
+				userName: this.state.userName,
+				language: this.state.language || 'en',
+			},
+			callTextBox: true
+		});
 	}
+
+	// handleSubmit(event) {
+	// 	const userName = event.target.value;
+	// 	if(event.keyCode === 13 && userName) {
+	// 		event.target.value = '';
+	// 	}
+	// }
 
 	render() {
-		console.log('this.state.userName', this.state.userName);
+
 
 		return (
 			<div>
-				<If condition={!this.state.userName}>
+				<If condition={!this.state.callTextBox}>
 					<div className="container">
 
+						<form
+							onSubmit={this.submitForm}
+							className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+
 							<input
-								className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2"
 								type="text"
 								placeholder="Enter username"
-								onKeyUp={this.handleSubmit}
+								onChange={e => this.setState({userName: e.target.value})}
 								style={styles.textBox}
 								/>
 
-							<div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-								<select
-									className="form-control"
-									style={styles.select}>
+								<div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+									<select
+										className="form-control"
+										style={styles.select}
+										onChange={e => this.setState({language: e.target.value})}>
+
 									<option value="en">English</option>
 									<option value="sp">Spanish</option>
-								</select>
-								<Select
-								    name="form-field-name"
-								    value="one"
-								    options={options}
-								    onChange={logChange}
-								/>
-							</div>
+
+									</select>
+								</div>
+
+							<button
+							 	className="btn btn-default"
+								type="submit">
+								Submit
+							</button>
+
+						</form>
+
+
 					</div>
 				</If>
 
-				<If condition={this.state.userName}>
-					<TextBox userName={this.state.userName}/>
+				<If condition={this.state.callTextBox}>
+					<TextBox userNameData={this.state.textBoxData}/>
 				</If>
 			</div>
 		)

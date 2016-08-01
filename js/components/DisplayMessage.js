@@ -5,32 +5,36 @@ export default class DisplayMessage extends React.Component {
 		super(props);
 	}
 
-
-
 	render() {
-		console.log('this.props.messages', this.props.messages);
+		console.log('this.props.messsages', this.props.messages);
+		console.log('this.props.userData', this.props.userData);
 		return (
-			<ul>
-				{this.props.messages.map((message, index) => {
-					return <div key={index}>
-						<span style={styles.from}>
-							<If condition={message.from === this.props.userNameData}>
-								you
-							</If>
+			<div className="container">
+				<ul>
+					{this.props.messages.map((message, index) => {
+						return <div key={index} className="row">
+							<span style={styles.from}>
+								<If condition={message.from === this.props.userData.userName}>
+									<span className="col-md-1 col-sm-1 col-xs-1">
+										you
+									</span>
+								</If>
 
-							<If condition={message.from !== this.props.userNameData}>
-								{message.from}
+								<If condition={message.from !== this.props.userData.userName}>
+									<span className="col-md-1 col-sm-1 col-xs-1">
+										{message.from}
+									</span>
+								</If>
 
-							</If>
+							</span>
+							<span style={styles.message} className="col-md-8 col-sm-8 col-xs-8">
+								{message.message}
+							</span>
+						</div>
+					})}
+				</ul>
 
-						</span>
-						<span style={styles.message}>
-
-							{message.message}
-						</span>
-					</div>
-				})}
-			</ul>
+			</div>
 		)
 	}
 }

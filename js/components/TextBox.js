@@ -29,7 +29,7 @@ export default class TextBox extends React.Component {
 		if(event.keyCode === 13 && newMessage) {
 			const message = {
 				message: newMessage,
-				from: this.props.userName
+				from: this.props.userNameData.userName
 			}
 			this.setState({ messages: [message, ...this.state.messages] });
 			this.socket.emit('message', message);
@@ -44,7 +44,7 @@ export default class TextBox extends React.Component {
 
 				<DisplayUser userData={this.props.userNameData}/>
 
-				<DisplayMessage messages={this.state.messages} userNameData={this.state.userNameData}/>
+				<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
 
 				<div className="row" style={styles.sendMessage}>
 					<input

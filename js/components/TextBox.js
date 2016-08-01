@@ -2,6 +2,7 @@ import React from 'react';
 import io from 'socket.io-client';
 
 import DisplayMessage from './DisplayMessage';
+import DisplayUser from './DisplayUser';
 
 export default class TextBox extends React.Component {
 
@@ -40,6 +41,8 @@ export default class TextBox extends React.Component {
 		console.log('this.props', this.props);
 		return (
 			<div className="container" style={styles.container}>
+
+				<DisplayUser userData={this.props.userNameData}/>
 
 				<DisplayMessage messages={this.state.messages} userNameData={this.state.userNameData}/>
 

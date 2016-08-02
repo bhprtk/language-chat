@@ -21,16 +21,23 @@ export default class UserName extends React.Component {
 		this.setLanguage = this.setLanguage.bind(this);
 	}
 
-	setUserName(event) {
-		const body = event.target.value;
-		if(event.keyCode === 13 && body) {
-			this.setState({
-				userName: body
-			});
+	// setUserName(event) {
+	// 	const body = event.target.value;
+	// 	if(event.keyCode === 13 && body) {
+	// 		this.setState({
+	// 			userName: body
+	// 		});
+	//
+	// 	}
+	// 		console.log('this.state after setUserName', this.state);
+	// 	}
 
-		}
-			console.log('this.state after setUserName', this.state);
-		}
+	setUserName(e) {
+		e.preventDefault();
+		this.setState({
+			userName: this.state.tempUserName
+		})
+	}
 
 		setLanguage(language, userName) {
 			console.log('language', language);
@@ -44,6 +51,10 @@ export default class UserName extends React.Component {
 			});
 		}
 
+		componentDidMount() {
+
+		}
+
 	render() {
 
 		return (
@@ -52,26 +63,54 @@ export default class UserName extends React.Component {
 						<div style={styles.container}>
 						<div className="container">
 
-							<p
-								className="text-md-center text-sm-center text-xs-center"
-								style={styles.title}>
-								<strong>
-									INTER LANGUAGE CHAT
-								</strong>
-							</p>
+							<If condition={!this.state.userName}>
+								<h4
+									className="text-md-center text-sm-center text-xs-center"
+									style={styles.title}>
+									<strong>
+										INTER LANGUAGE CHAT
+									</strong>
+								</h4>
+
+							</If>
+
+							<If condition={this.state.userName}>
+								<h4
+									className="text-md-center text-sm-center text-xs-center"
+									style={styles.title}>
+									<strong>
+										HELLO {this.state.userName}
+									</strong>
+								</h4>
+							</If>
+
 
 
 							<If condition={!this.state.userName}>
-								<div className="col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 text-md-center text-sm-center text-xs-center">
-									<p>Type a username and press enter</p>
-									<p>Escriba un nombre de usuario y pulse enter</p>
-									<input
-										className="form-control"
-										type="text"
-										placeholder="Enter username"
-										onKeyUp={this.setUserName}
-										style={styles.textBox}
-										/>
+								<div
+									className="col-md-8 col-md-offset-2 text-md-center text-sm-center text-xs-center">
+									<div style={styles.description}>
+										<h5>Type a username and press enter</h5>
+										<br/>
+										<h5>Escriba un nombre de usuario y pulse enter</h5>
+										<hr/>
+
+									</div>
+									<form onSubmit={this.setUserName}>
+										<input
+											className="form-control text-md-center text-xs-center text-sm-center"
+											type="text"
+											placeholder="Enter username"
+											onChange={e => this.setState({tempUserName: e.target.value})}
+											style={styles.textBox}
+											required
+											/>
+
+										<button className="btn btn-default" style={styles.submit}>
+											Submit
+										</button>
+
+									</form>
 
 								</div>
 
@@ -81,6 +120,10 @@ export default class UserName extends React.Component {
 
 								<div className="row">
 									<ChooseLanguage setLanguage={this.setLanguage} />
+									<button
+										onClick={() => this.setState({userName: null})}>
+										Back
+									</button>
 								</div>
 							</If>
 
@@ -101,13 +144,13 @@ export default class UserName extends React.Component {
 const styles = {
 	container: {
 		paddingTop: 200,
-		background: '#FDEDC7',
-		height: '100vh',
+		// background: '#FDEDC7',
+		// height: '100vh',
 		color: '#7B6532'
 	},
 	textBox: {
 		height: 50,
-		// marginTop: 100,
+		marginTop: 20,
 
 	},
 	select: {
@@ -115,7 +158,10 @@ const styles = {
 		marginTop: 20
 	},
 	title: {
-		color: '#EF4E42',
-		fontSize: 64
+		color: '#696969',
+	},
+	description: {
+		paddingTop: 20,
+		paddingBottom: 20,
 	}
 }

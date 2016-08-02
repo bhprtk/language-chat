@@ -9,7 +9,13 @@ export default class DisplayUser extends React.Component {
 		console.log('this.props', this.props);
 		return (
 			<h4>
-				Hello,
+				<If condition={this.props.userData.language === "en"}>
+					Hello,
+				</If>
+				<If condition={this.props.userData.language === "es"}>
+					Hola,
+				</If>
+
 				<span style={styles.userName}>
 					{this.props.userData.userName}
 				</span>

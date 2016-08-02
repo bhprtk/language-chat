@@ -6,8 +6,10 @@ export default class ChooseLanguage extends React.Component {
 		return (
 			<div className="text-md-center text-sm-center text-xs-center" style={styles.flags}>
 
-				<p>Choose your prefered language</p>
-				<p>Elija su idioma preferido</p>
+				<h4>Choose your prefered language</h4>
+				<br/>
+				<h4>Elija su idioma preferido</h4>
+				<hr/>
 
 				<button
 					className="btn btn-default btn-lg"

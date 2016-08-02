@@ -48,8 +48,8 @@ export default class UserName extends React.Component {
 
 		return (
 			<div>
-				<div style={styles.container}>
 					<If condition={!this.state.callTextBox}>
+						<div style={styles.container}>
 						<div className="container">
 
 							<p
@@ -86,9 +86,9 @@ export default class UserName extends React.Component {
 
 
 						</div>
+					</div>
 					</If>
 
-				</div>
 
 				<If condition={this.state.callTextBox}>
 					<TextBox userNameData={this.state.textBoxData}/>

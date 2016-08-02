@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 
 import TextBox from './TextBox'
 
@@ -9,6 +10,8 @@ export default class UserName extends React.Component {
 		this.state = {
 			userName: '',
 			callTextBox: false,
+			hoveringEn: false,
+			hoveringEs: false,
 		}
 
 		// this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,6 +44,12 @@ export default class UserName extends React.Component {
 
 	render() {
 
+		let eshover = classNames({
+			'animated pulse': this.state.hoveringEs,
+		})
+		let enhover = classNames({
+			'animated pulse': this.state.hoveringEn
+		})
 
 		return (
 			<div>
@@ -62,7 +71,28 @@ export default class UserName extends React.Component {
 								required
 								/>
 
-							<div className="row">
+							<div className="row text-md-center text-sm-center text-xs-center" style={styles.flags}>
+								<img
+									className={enhover}
+									style={styles.enFlag}
+								 	src='http://fla.fg-a.com/American/1-lg-american-flag.jpg'
+									width='100'
+									height='75'
+									role='button'
+									onMouseOver={() => this.setState({hoveringEn: true})}
+									onMouseLeave={() => this.setState({hoveringEn: false})}
+									onClick={() => console.log('hello')}/>
+
+								<img
+									className={eshover}
+									style={styles.esFlag}
+								 	src='http://static.donquijote.org/images/culture/spanish_flag2.jpg'
+									width='100'
+									height='75'
+									role='button'
+									onMouseOver={() => this.setState({hoveringEs: true})}
+									onMouseLeave={() => this.setState({hoveringEs: false})}
+									onClick={() => console.log('hello')}/>
 
 							</div>
 
@@ -97,5 +127,11 @@ const styles = {
 	select: {
 		height: 50,
 		marginTop: 20
+	},
+	flags: {
+		marginTop: 20
+	},
+	esFlag: {
+		margin: 10
 	}
 }

@@ -2,6 +2,7 @@ import React from 'react';
 
 export default class ChooseLanguage extends React.Component {
 	render() {
+		console.log('this.props.userName', this.props.userName);
 		return (
 			<div className="text-md-center text-sm-center text-xs-center" style={styles.flags}>
 
@@ -9,18 +10,18 @@ export default class ChooseLanguage extends React.Component {
 				<p>Elija su idioma preferido</p>
 
 				<button
-					className="btn btn-secondary-outline btn-lg"
+					className="btn btn-default btn-lg"
 					type="button"
-					style={styles.enFlag}
-					onClick={() => console.log('hello')}>
+					style={styles.flagButtons}
+					onClick={() => this.props.setLanguage('en')}>
 					English
 				</button>
 
 				<button
-					className="btn btn-secondary-outline btn-lg"
+					className="btn btn-default btn-lg"
 					type="button"
-					style={styles.esFlag}
-					onClick={() => console.log('hello')}>
+					style={styles.flagButtons}
+					onClick={() => this.props.setLanguage('es')}>
 					Español
 				</button>
 
@@ -34,10 +35,10 @@ const styles = {
 	flags: {
 		marginTop: 20
 	},
-	enFlag: {
-		margin: 10
-	},
-	esFlag: {
-		margin: 10
+	flagButtons: {
+		margin: 10,
+		background: '#fff',
+		borderColor: '#7B6532',
+		borderWidth: 2
 	},
 }

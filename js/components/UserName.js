@@ -17,94 +17,78 @@ export default class UserName extends React.Component {
 			}
 		}
 
-		this.handleSubmit = this.handleSubmit.bind(this);
-		// this.submitForm = this.submitForm.bind(this);
+		this.setUserName = this.setUserName.bind(this);
+		this.setLanguage = this.setLanguage.bind(this);
 	}
 
-	// submitForm(event) {
-	// 	event.preventDefault();
-	//
-	// 	this.setState({
-	// 		textBoxData: {
-	// 			userName: this.state.userName,
-	// 			language: this.state.language || 'en',
-	// 		},
-	// 		callTextBox: true
-	// 	});
-	// }
-
-	handleSubmit(event) {
+	setUserName(event) {
 		const body = event.target.value;
 		if(event.keyCode === 13 && body) {
 			this.setState({
-				textBoxData: {
-					userName: event.target.value,
-					language: this.state.language || 'en',
-				},
-				// callTextBox: true
+				userName: body
 			});
-			}
-			// event.target.value = '';
+
+		}
+			console.log('this.state after setUserName', this.state);
 		}
 
-	// <div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
-	// 	<select
-	// 		className="form-control"
-	// 		style={styles.select}
-	// 		onChange={e => this.setState({language: e.target.value})}>
-	//
-	// 	<option value="en">English</option>
-	// 	<option value="es">Spanish</option>
-	//
-	// 	</select>
-	// </div>
+		setLanguage(language, userName) {
+			console.log('language', language);
+			console.log('this.state in setLanguage', this.state);
+			this.setState({
+				textBoxData: {
+					language: language,
+					userName: this.state.userName
+				},
+				callTextBox: true
+			});
+		}
 
 	render() {
-		console.log('this.state', this.state);
 
 		return (
-			<div style={styles.container}>
-				<If condition={!this.state.callTextBox}>
-					<div className="container">
+			<div>
+				<div style={styles.container}>
+					<If condition={!this.state.callTextBox}>
+						<div className="container">
 
-						<p
-							className="text-md-center text-sm-center text-xs-center"
-							style={styles.title}>
+							<p
+								className="text-md-center text-sm-center text-xs-center"
+								style={styles.title}>
 								<strong>
 									INTER LANGUAGE CHAT
-
 								</strong>
-
-						</p>
-
-
-						<If condition={!this.state.textBoxData.userName}>
-							<div className="col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 text-md-center text-sm-center text-xs-center">
-								<p>Type a username and press enter</p>
-								<p>Escriba un nombre de usuario y pulse Intro</p>
-								<input
-									className="form-control"
-									type="text"
-									placeholder="Enter username"
-									onKeyUp={this.handleSubmit}
-									style={styles.textBox}
-									/>
-
-							</div>
-
-						</If>
-
-						<If condition={this.state.textBoxData.userName}>
-
-							<div className="row">
-								<ChooseLanguage />
-
-							</div>
-						</If>
+							</p>
 
 
-					</div>
-				</If>
+							<If condition={!this.state.userName}>
+								<div className="col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 text-md-center text-sm-center text-xs-center">
+									<p>Type a username and press enter</p>
+									<p>Escriba un nombre de usuario y pulse enter</p>
+									<input
+										className="form-control"
+										type="text"
+										placeholder="Enter username"
+										onKeyUp={this.setUserName}
+										style={styles.textBox}
+										/>
+
+								</div>
+
+							</If>
+
+							<If condition={this.state.userName}>
+
+								<div className="row">
+									<ChooseLanguage setLanguage={this.setLanguage} />
+								</div>
+							</If>
+
+
+						</div>
+					</If>
+
+				</div>
 
 				<If condition={this.state.callTextBox}>
 					<TextBox userNameData={this.state.textBoxData}/>
@@ -123,7 +107,7 @@ const styles = {
 	},
 	textBox: {
 		height: 50,
-		marginTop: 100,
+		// marginTop: 100,
 
 	},
 	select: {

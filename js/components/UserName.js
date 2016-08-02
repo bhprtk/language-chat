@@ -2,6 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import TextBox from './TextBox'
+import ChooseLanguage from './ChooseLanguage'
 
 export default class UserName extends React.Component {
 	constructor(props) {
@@ -10,25 +11,41 @@ export default class UserName extends React.Component {
 		this.state = {
 			userName: '',
 			callTextBox: false,
-			hoveringEn: false,
-			hoveringEs: false,
+			textBoxData: {
+				userName: null,
+				language: ''
+			}
 		}
 
-		// this.handleSubmit = this.handleSubmit.bind(this);
-		this.submitForm = this.submitForm.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		// this.submitForm = this.submitForm.bind(this);
 	}
 
-	submitForm(event) {
-		event.preventDefault();
+	// submitForm(event) {
+	// 	event.preventDefault();
+	//
+	// 	this.setState({
+	// 		textBoxData: {
+	// 			userName: this.state.userName,
+	// 			language: this.state.language || 'en',
+	// 		},
+	// 		callTextBox: true
+	// 	});
+	// }
 
-		this.setState({
-			textBoxData: {
-				userName: this.state.userName,
-				language: this.state.language || 'en',
-			},
-			callTextBox: true
-		});
-	}
+	handleSubmit(event) {
+		const body = event.target.value;
+		if(event.keyCode === 13 && body) {
+			this.setState({
+				textBoxData: {
+					userName: event.target.value,
+					language: this.state.language || 'en',
+				},
+				// callTextBox: true
+			});
+			}
+			// event.target.value = '';
+		}
 
 	// <div className="col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
 	// 	<select
@@ -43,68 +60,47 @@ export default class UserName extends React.Component {
 	// </div>
 
 	render() {
-
-		let eshover = classNames({
-			'animated pulse': this.state.hoveringEs,
-		})
-		let enhover = classNames({
-			'animated pulse': this.state.hoveringEn
-		})
+		console.log('this.state', this.state);
 
 		return (
-			<div>
+			<div style={styles.container}>
 				<If condition={!this.state.callTextBox}>
 					<div className="container">
 
-							<h1 className="text-md-center text-sm-center text-xs-center">Language Chat</h1>
+						<p
+							className="text-md-center text-sm-center text-xs-center"
+							style={styles.title}>
+								<strong>
+									INTER LANGUAGE CHAT
 
-						<form
-							onSubmit={this.submitForm}
-							className="form-group col-md-8 col-xs-8 col-sm-8 col-md-offset-2 col-sm-offset-2 col-xs-offset-2">
+								</strong>
 
-							<input
-								className="form-control"
-								type="text"
-								placeholder="Enter username"
-								onChange={e => this.setState({userName: e.target.value})}
-								style={styles.textBox}
-								required
-								/>
+						</p>
 
-							<div className="row text-md-center text-sm-center text-xs-center" style={styles.flags}>
-								<img
-									className={enhover}
-									style={styles.enFlag}
-								 	src='http://fla.fg-a.com/American/1-lg-american-flag.jpg'
-									width='100'
-									height='75'
-									role='button'
-									onMouseOver={() => this.setState({hoveringEn: true})}
-									onMouseLeave={() => this.setState({hoveringEn: false})}
-									onClick={() => console.log('hello')}/>
 
-								<img
-									className={eshover}
-									style={styles.esFlag}
-								 	src='http://static.donquijote.org/images/culture/spanish_flag2.jpg'
-									width='100'
-									height='75'
-									role='button'
-									onMouseOver={() => this.setState({hoveringEs: true})}
-									onMouseLeave={() => this.setState({hoveringEs: false})}
-									onClick={() => console.log('hello')}/>
+						<If condition={!this.state.textBoxData.userName}>
+							<div className="col-md-6 col-sm-6 col-xs-6 col-md-offset-3 col-sm-offset-3 col-xs-offset-3 text-md-center text-sm-center text-xs-center">
+								<p>Type a username and press enter</p>
+								<p>Escriba un nombre de usuario y pulse Intro</p>
+								<input
+									className="form-control"
+									type="text"
+									placeholder="Enter username"
+									onKeyUp={this.handleSubmit}
+									style={styles.textBox}
+									/>
 
 							</div>
 
+						</If>
 
+						<If condition={this.state.textBoxData.userName}>
 
-							<button
-							 	className="btn btn-default"
-								type="submit">
-								Submit
-							</button>
+							<div className="row">
+								<ChooseLanguage />
 
-						</form>
+							</div>
+						</If>
 
 
 					</div>
@@ -119,6 +115,12 @@ export default class UserName extends React.Component {
 }
 
 const styles = {
+	container: {
+		paddingTop: 200,
+		background: '#FDEDC7',
+		height: '100vh',
+		color: '#7B6532'
+	},
 	textBox: {
 		height: 50,
 		marginTop: 100,
@@ -128,10 +130,8 @@ const styles = {
 		height: 50,
 		marginTop: 20
 	},
-	flags: {
-		marginTop: 20
-	},
-	esFlag: {
-		margin: 10
+	title: {
+		color: '#EF4E42',
+		fontSize: 64
 	}
 }

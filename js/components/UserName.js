@@ -75,6 +75,13 @@ export default class UserName extends React.Component {
 							</If>
 
 							<If condition={this.state.userName}>
+								<button
+									style={styles.buttons}
+									className="btn btn-default"
+									onClick={() => this.setState({userName: null})}>
+									Back
+								</button>
+								<hr/>
 								<h4
 									className="text-md-center text-sm-center text-xs-center"
 									style={styles.title}>
@@ -106,7 +113,7 @@ export default class UserName extends React.Component {
 											required
 											/>
 
-										<button className="btn btn-default" style={styles.submit}>
+										<button className="btn btn-default" style={styles.buttons}>
 											Submit
 										</button>
 
@@ -120,10 +127,7 @@ export default class UserName extends React.Component {
 
 								<div className="row">
 									<ChooseLanguage setLanguage={this.setLanguage} />
-									<button
-										onClick={() => this.setState({userName: null})}>
-										Back
-									</button>
+
 								</div>
 							</If>
 
@@ -151,6 +155,7 @@ const styles = {
 	textBox: {
 		height: 50,
 		marginTop: 20,
+		marginBottom: 20,
 
 	},
 	select: {
@@ -163,5 +168,10 @@ const styles = {
 	description: {
 		paddingTop: 20,
 		paddingBottom: 20,
+	},
+	buttons: {
+		background: '#fff',
+		borderColor: '#7B6532',
+		borderWidth: 2
 	}
 }

@@ -48,7 +48,7 @@ export default class TextBox extends React.Component {
 				<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
 
 				<div className="row" style={styles.sendMessage}>
-					
+
 					<input
 						className="col-md-8 col-xs-8 col-sm-8"
 						type="text"

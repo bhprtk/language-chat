@@ -1,8 +1,16 @@
 import React from 'react';
+import io from 'socket.io-client';
 
 export default class DisplayUser extends React.Component {
 	constructor(props) {
 		super(props);
+	}
+
+	componentDidMount() {
+		this.socket = io('/');
+		this.socket.on('updateCount', count => {
+			console.log('count', count);
+		})
 	}
 
 	render() {

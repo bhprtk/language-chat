@@ -35,7 +35,12 @@ let connectionCount = 0;
 io.on('connection', socket => {
 	connectionCount++;
 	console.log('count', connectionCount);
+	socket.broadcast.emit('updateCount', connectionCount);
+
+	
+
 	socket.on('message', message => {
+
 		console.log('message', message);
 		let _target;
 		if(message.preferedLanguage === 'en') {

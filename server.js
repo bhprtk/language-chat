@@ -15,7 +15,7 @@ const API_KEY = process.env.API_KEY;
 const PORT = process.env.PORT || 3000;
 
 const app = express();
-const server = http.Server(app);
+const server = http.createServer(app);
 const io = new SocketIO(server);
 
 
@@ -30,14 +30,10 @@ app.use(express.static('public'));
 // 'https://www.googleapis.com/customsearch/v1?key= AIzaSyAcAf8p4Oh_4bBRhm3mkW80nrhmlzZj1Nk&cx=017576662512468239146:omuauf_lfve&q=lectures'
 // ''
 
-let connectionCount = 0;
 
 io.on('connection', socket => {
-	connectionCount++;
-	console.log('count', connectionCount);
-	socket.broadcast.emit('updateCount', connectionCount);
+	io.emit('updateCount', io.engine.clientsCount);
 
-	
 
 	socket.on('message', message => {
 
@@ -61,7 +57,11 @@ io.on('connection', socket => {
 			})
 
 	})
+	socket.on('disconnect', socket => {
+		io.emit('updateCount', io.engine.clientsCount);
+	})
 })
+
 
 // app.use('/users', users);
 

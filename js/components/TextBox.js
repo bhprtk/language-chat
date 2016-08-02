@@ -17,7 +17,7 @@ export default class TextBox extends React.Component {
 	}
 
 	componentDidMount() {
-		this.socket = io('/');
+		this.socket = io('/messages');
 		this.socket.on('message', message => {
 			console.log('message', message);
 			this.setState({ messages: [message, ...this.state.messages] });

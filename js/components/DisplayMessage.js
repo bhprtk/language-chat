@@ -14,20 +14,21 @@ export default class DisplayMessage extends React.Component {
 					{this.props.messages.map((message, index) => {
 						return <div key={index} className="row">
 							<span style={styles.from}>
+
 								<If condition={message.from === this.props.userData.userName}>
-									<span className="col-md-3 col-sm-3 col-xs-3">
+									<span style={styles.you}>
 										You <span style={styles.sentAt}>{message.sentAt}</span>
 									</span>
 								</If>
 
 								<If condition={message.from !== this.props.userData.userName}>
-									<span className="col-md-3 col-sm-3 col-xs-3">
+									<span>
 										{message.from} <span style={styles.sentAt}>{message.sentAt}</span>
 									</span>
 								</If>
 
 							</span>
-							<span style={styles.message} className="col-md-8 col-sm-8 col-xs-8">
+							<span style={styles.message}>
 								{message.message}
 							</span>
 						</div>
@@ -41,12 +42,19 @@ export default class DisplayMessage extends React.Component {
 
 const styles = {
 	from: {
-		color: 'green'
+		color: '#7B6532'
 	},
 	container: {
 		paddingTop: 60
 	},
 	sentAt: {
-		fontSize: 10
+		fontSize: 10,
+		color: '#696969'
+	},
+	you: {
+		color: 'green'
+	},
+	message: {
+		marginLeft: 20
 	}
 }

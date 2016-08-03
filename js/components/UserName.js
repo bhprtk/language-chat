@@ -148,8 +148,6 @@ export default class UserName extends React.Component {
 const styles = {
 	container: {
 		paddingTop: 200,
-		// background: '#FDEDC7',
-		// height: '100vh',
 		color: '#7B6532'
 	},
 	textBox: {

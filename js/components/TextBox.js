@@ -12,37 +12,35 @@ export default class TextBox extends React.Component {
 
 		this.state = {
 			messages: [],
-			socket: io()
+			socket: io(),
+			newMessage: ''
 		}
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.newMessage = this.newMessage.bind(this);
 
 	}
 
 	componentDidMount() {
-		// this.socket = io();
 		this.state.socket.on('message', message => {
 			console.log('message', message);
 			this.setState({ messages: [message, ...this.state.messages] });
 		})
 	}
 
-	handleSubmit(event) {
-		const newMessage = event.target.value;
-		if(event.keyCode === 13 && newMessage) {
-			const message = {
-				message: newMessage,
-				from: this.props.userNameData.userName,
-				preferedLanguage: this.props.userNameData.language,
-				sentAt: moment().format('LT')
-			}
-			this.setState({ messages: [message, ...this.state.messages] });
-			this.state.socket.emit('message', message);
-			event.target.value = '';
+	newMessage(e) {
+		e.preventDefault();
+		const message = {
+			message: this.state.newMessage,
+			from: this.props.userNameData.userName,
+			preferedLanguage: this.props.userNameData.language,
+			sentAt: moment().format('LT')
 		}
+		this.setState({ messages: [message, ...this.state.messages] });
+		this.state.socket.emit('message', message);
+		this.setState({newMessage: ''})
 	}
 
 	render() {
-		console.log('this.state.messages', this.state.messages);
 		return (
 			<div className="container" style={styles.container}>
 
@@ -51,17 +49,23 @@ export default class TextBox extends React.Component {
 				<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
 
 					<nav className="navbar navbar-fixed-bottom navbar-light" style={styles.navbar}>
-						<input
-							className="col-md-8 col-xs-8 col-sm-8"
-							type="text"
-							placeholder="Enter a message.."
-							onKeyUp={this.handleSubmit}
-							style={styles.textBox}
-							/>
 
-						<button className="btn btn-success-outline btn-lg">
-							Send
-						</button>
+							<form onSubmit={this.newMessage}>
+								<input
+									className="col-md-8 col-xs-8 col-sm-8"
+									type="text"
+									placeholder="Enter a message.."
+									onChange={e => this.setState({newMessage: e.target.value})}
+									value={this.state.newMessage}
+									style={styles.textBox}
+									/>
+
+								<button className="btn btn-success-outline btn-lg">
+									Send
+								</button>
+
+							</form>
+
 					</nav>
 
 

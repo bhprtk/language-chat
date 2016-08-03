@@ -64,7 +64,8 @@ const styles = {
 		marginLeft: 10
 	},
 	navbar: {
-		background: '#fff'
+		background: '#fff',
+		paddingTop: 10
 	},
 	users: {
 		marginLeft: 3,

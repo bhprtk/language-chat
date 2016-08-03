@@ -47,20 +47,20 @@ export default class TextBox extends React.Component {
 
 				<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
 
-				<div className="row" style={styles.sendMessage}>
+					<nav className="navbar navbar-fixed-bottom">
+						<input
+							className="col-md-8 col-xs-8 col-sm-8"
+							type="text"
+							placeholder="Enter a message.."
+							onKeyUp={this.handleSubmit}
+							style={styles.textBox}
+							/>
 
-					<input
-						className="col-md-8 col-xs-8 col-sm-8"
-						type="text"
-						placeholder="Enter a message.."
-						onKeyUp={this.handleSubmit}
-						style={styles.textBox}
-						/>
+						<button className="btn btn-success-outline btn-lg">
+							Send
+						</button>
+					</nav>
 
-					<button className="btn btn-success-outline btn-lg">
-						Send
-					</button>
-				</div>
 
 		</div>
 		)

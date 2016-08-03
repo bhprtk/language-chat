@@ -9,7 +9,7 @@ export default class DisplayMessage extends React.Component {
 		console.log('this.props.messsages', this.props.messages);
 		console.log('this.props.userData', this.props.userData);
 		return (
-			<div className="container">
+			<div className="container" style={styles.container}>
 				<ul>
 					{this.props.messages.map((message, index) => {
 						return <div key={index} className="row">
@@ -43,4 +43,7 @@ const styles = {
 	from: {
 		color: 'green'
 	},
+	container: {
+		paddingTop: 60
+	}
 }

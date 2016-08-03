@@ -7,15 +7,15 @@ export default class DisplayUser extends React.Component {
 	}
 
 	componentDidMount() {
-		this.socket = io('/');
-		this.socket.on('updateCount', count => {
+		// this.socket = io();
+		this.props.socket.on('updateCount', count => {
 			console.log('count', count);
 		})
 	}
 
 	render() {
 		return (
-			<nav className="navbar navbar-fixed-top">
+			<nav className="navbar navbar-fixed-top navbar-light" style={styles.navbar}>
 				<h4>
 					<If condition={this.props.userData.language === "en"}>
 						Hello,
@@ -37,5 +37,8 @@ export default class DisplayUser extends React.Component {
 const styles = {
 	userName: {
 		color: 'green'
+	},
+	navbar: {
+		background: '#fff'
 	}
 }

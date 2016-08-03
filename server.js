@@ -52,11 +52,13 @@ io.on('connection', socket => {
 				console.log('body', body);
 				socket.broadcast.emit('message', {
 					message: newBody.data.translations[0].translatedText,
-					from: message.from
+					from: message.from,
+					sentAt: message.sentAt
 				})
 			})
 
 	})
+
 	socket.on('disconnect', socket => {
 		io.emit('updateCount', io.engine.clientsCount);
 	})

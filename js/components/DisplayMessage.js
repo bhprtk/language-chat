@@ -15,14 +15,14 @@ export default class DisplayMessage extends React.Component {
 						return <div key={index} className="row">
 							<span style={styles.from}>
 								<If condition={message.from === this.props.userData.userName}>
-									<span className="col-md-1 col-sm-1 col-xs-1">
-										you
+									<span className="col-md-3 col-sm-3 col-xs-3">
+										You <span style={styles.sentAt}>{message.sentAt}</span>
 									</span>
 								</If>
 
 								<If condition={message.from !== this.props.userData.userName}>
-									<span className="col-md-1 col-sm-1 col-xs-1">
-										{message.from}
+									<span className="col-md-3 col-sm-3 col-xs-3">
+										{message.from} <span style={styles.sentAt}>{message.sentAt}</span>
 									</span>
 								</If>
 
@@ -45,5 +45,8 @@ const styles = {
 	},
 	container: {
 		paddingTop: 60
+	},
+	sentAt: {
+		fontSize: 10
 	}
 }

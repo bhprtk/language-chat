@@ -21,17 +21,6 @@ export default class UserName extends React.Component {
 		this.setLanguage = this.setLanguage.bind(this);
 	}
 
-	// setUserName(event) {
-	// 	const body = event.target.value;
-	// 	if(event.keyCode === 13 && body) {
-	// 		this.setState({
-	// 			userName: body
-	// 		});
-	//
-	// 	}
-	// 		console.log('this.state after setUserName', this.state);
-	// 	}
-
 	setUserName(e) {
 		e.preventDefault();
 		this.setState({
@@ -49,10 +38,6 @@ export default class UserName extends React.Component {
 				},
 				callTextBox: true
 			});
-
-		}
-
-		componentDidMount() {
 
 		}
 

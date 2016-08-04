@@ -20,10 +20,6 @@ export default class TextBox extends React.Component {
 	}
 
 	componentDidMount() {
-		this.state.socket.emit('preferedLanguage', this.props.userNameData.language)
-
-		this.state.socket.emit('thisUser', this.props.userNameData);
-
 		this.state.socket.on('message', message => {
 			this.setState({ messages: [message, ...this.state.messages] });
 		})

@@ -15,14 +15,16 @@ export default class TextBox extends React.Component {
 			socket: io(),
 			newMessage: ''
 		}
-		this.handleSubmit = this.handleSubmit.bind(this);
 		this.newMessage = this.newMessage.bind(this);
 
 	}
 
 	componentDidMount() {
+		this.state.socket.emit('preferedLanguage', this.props.userNameData.language)
+
+		this.state.socket.emit('thisUser', this.props.userNameData);
+
 		this.state.socket.on('message', message => {
-			console.log('message', message);
 			this.setState({ messages: [message, ...this.state.messages] });
 		})
 	}
@@ -52,7 +54,7 @@ export default class TextBox extends React.Component {
 
 							<form onSubmit={this.newMessage}>
 								<input
-									className="col-md-8 col-xs-8 col-sm-8"
+									className="col-md-10 col-xs-10 col-sm-10"
 									type="text"
 									placeholder="Enter a message.."
 									onChange={e => this.setState({newMessage: e.target.value})}

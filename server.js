@@ -31,31 +31,48 @@ app.use(express.static('public'));
 // ''
 
 
+let _target;
 io.on('connection', socket => {
+
+	socket.on('thisUser', thisUser => {
+
+		console.log('thisUser', thisUser);
+	})
+
 	io.emit('updateCount', io.engine.clientsCount);
+
+	socket.on('preferedLanguage', language => {
+		_target = language;
+	})
 
 
 	socket.on('message', message => {
 
-		console.log('message', message);
-		let _target;
-		if(message.preferedLanguage === 'en') {
-			_target = 'es';
-		} else if(message.preferedLanguage === 'es') {
-			_target = 'en';
-		}
-
-		request
+		console.log('_target biithc', _target);
+		if(_target === 'es') {
+			request
 			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=${_target}&q=${message.message}`, (error, response, body) => {
 				let newBody = JSON.parse(body);
-				console.log('newBody.data.translations[0].translatedText', newBody.data.translations[0].translatedText);
-				console.log('body', body);
 				socket.broadcast.emit('message', {
-					message: newBody.data.translations[0].translatedText,
+					enMessage: message.message,
+					esMessage: newBody.data.translations[0].translatedText,
 					from: message.from,
 					sentAt: message.sentAt
 				})
 			})
+
+		} else if(_target === 'en') {
+			request
+			.get(`https://www.googleapis.com/language/translate/v2?key=${API_KEY}&target=${_target}&q=${message.message}`, (error, response, body) => {
+				let newBody = JSON.parse(body);
+				socket.broadcast.emit('message', {
+					esMessage: message.message,
+					enMessage: newBody.data.translations[0].translatedText,
+					from: message.from,
+					sentAt: message.sentAt
+				})
+			})
+		}
 
 	})
 

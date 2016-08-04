@@ -28,8 +28,21 @@ export default class DisplayMessage extends React.Component {
 								</If>
 
 							</span>
+
+
 							<span style={styles.message}>
-								{message.message}
+								<If condition={message.message}>
+									{message.message}
+								</If>
+								<If condition={!message.message}>
+									<If condition={this.props.userData.language === "en"}>
+										{message.enMessage}
+									</If>
+									<If condition={this.props.userData.language === "es"}>
+										{message.esMessage}
+									</If>
+
+								</If>
 							</span>
 						</div>
 					})}

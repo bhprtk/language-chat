@@ -49,6 +49,7 @@ export default class UserName extends React.Component {
 				},
 				callTextBox: true
 			});
+
 		}
 
 		componentDidMount() {

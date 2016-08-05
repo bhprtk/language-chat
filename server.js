@@ -11,10 +11,6 @@ const request = require('request');
 require('dotenv').load();
 
 
-
-// import dotenv from 'dotenv';
-// dotenv.load();
-
 const API_KEY = process.env.API_KEY;
 // import users from './routes/users';
 

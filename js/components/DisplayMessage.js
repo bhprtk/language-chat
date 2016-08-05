@@ -6,8 +6,6 @@ export default class DisplayMessage extends React.Component {
 	}
 
 	render() {
-		console.log('this.props.messsages', this.props.messages);
-		console.log('this.props.userData', this.props.userData);
 		return (
 			<div className="container" style={styles.container}>
 				<ul>

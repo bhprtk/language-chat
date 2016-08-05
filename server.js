@@ -1,13 +1,17 @@
-import express from 'express';
-import morgan from 'morgan';
-import bodyParser from 'body-parser';
-import path from 'path';
-import http from 'http';
-import SocketIO from 'socket.io';
-import request from 'request';
+const express = require('express');
+const morgan = require('morgan');
+const bodyParser = require('body-parser');
+const path = require('path');
+const http = require('http');
+const SocketIO = require('socket.io');
+const request = require('request');
 
-import dotenv from 'dotenv';
-dotenv.load();
+require('dotenv').load();
+
+
+
+// import dotenv from 'dotenv';
+// dotenv.load();
 
 const API_KEY = process.env.API_KEY;
 // import users from './routes/users';

@@ -8,7 +8,7 @@ const http = require('http');
 const SocketIO = require('socket.io');
 const request = require('request');
 
-require('dotenv').load();
+// require('dotenv').load();
 
 
 const API_KEY = process.env.API_KEY;

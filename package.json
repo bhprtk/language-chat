@@ -33,5 +33,5 @@
     "socket.io": "^1.4.8",
     "webpack": "^1.13.1",
     "jsx-control-statements": "^3.1.2"
-  },
+  }
 }

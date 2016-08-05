@@ -31,9 +31,9 @@
     "react-router": "^2.6.1",
     "request": "^2.74.0",
     "socket.io": "^1.4.8",
-    "webpack": "^1.13.1"
+    "webpack": "^1.13.1",
+    "jsx-control-statements": "^3.1.2"
   },
   "devDependencies": {
-    "jsx-control-statements": "^3.1.2"
   }
 }

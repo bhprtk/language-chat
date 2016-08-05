@@ -10,8 +10,15 @@ export default class TextBox extends React.Component {
 	constructor(props) {
 		super(props);
 
+		let msgObj = {
+			from: 'bot',
+			sentAt:moment().format('LT'),
+			enMessage: 'Welcome to Inter Language Chat app. To talk to other online users, type a message in your language.',
+			esMessage: 'Bienvenido a Inter Idioma chat aplicación. Para hablar con otros usuarios, escriba un mensaje en su idioma.'
+		}
+
 		this.state = {
-			messages: [],
+			messages: [msgObj],
 			socket: io(),
 			newMessage: ''
 		}
@@ -49,18 +56,23 @@ export default class TextBox extends React.Component {
 					<nav className="navbar navbar-fixed-bottom navbar-light" style={styles.navbar}>
 
 							<form onSubmit={this.newMessage}>
-								<input
-									className="col-md-10 col-xs-10 col-sm-10"
-									type="text"
-									placeholder="Enter a message.."
-									onChange={e => this.setState({newMessage: e.target.value})}
-									value={this.state.newMessage}
-									style={styles.textBox}
-									/>
 
+								<h1>
+									<input
+										className="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1"
+										type="text"
+										placeholder="Enter a message.."
+										onChange={e => this.setState({newMessage: e.target.value})}
+										value={this.state.newMessage}
+										style={styles.textBox}
+										onFocus={() => console.log('fucous')}
+										/>
+
+								</h1>
+{/*
 								<button className="btn btn-success-outline btn-lg">
 									Send
-								</button>
+								</button>*/}
 
 							</form>
 
@@ -82,8 +94,9 @@ const styles = {
 		width: '100%'
 	},
 	textBox: {
-		height: 50,
-		marginRight: 10
+		height: 100,
+		marginRight: 10,
+		color: '#696969'
 	},
 	from: {
 		color: 'green'

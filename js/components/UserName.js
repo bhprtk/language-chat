@@ -29,8 +29,6 @@ export default class UserName extends React.Component {
 	}
 
 		setLanguage(language, userName) {
-			console.log('language', language);
-			console.log('this.state in setLanguage', this.state);
 			this.setState({
 				textBoxData: {
 					language: language,
@@ -44,21 +42,22 @@ export default class UserName extends React.Component {
 	render() {
 
 		return (
-			<div>
+			<div style={styles.mainBody}>
 					<If condition={!this.state.callTextBox}>
 						<div style={styles.container}>
 						<div className="container">
 
 							<If condition={!this.state.userName}>
-								<h4
+								<h1
 									className="text-md-center text-sm-center text-xs-center"
 									style={styles.title}>
 									<strong>
 										INTER LANGUAGE CHAT
 									</strong>
-								</h4>
+								</h1>
 
 							</If>
+							<hr/>
 
 							<If condition={this.state.userName}>
 								<button
@@ -70,7 +69,7 @@ export default class UserName extends React.Component {
 								<hr/>
 								<h4
 									className="text-md-center text-sm-center text-xs-center"
-									style={styles.title}>
+									style={styles.hello}>
 									<strong>
 										HELLO {this.state.userName}
 									</strong>
@@ -82,28 +81,36 @@ export default class UserName extends React.Component {
 							<If condition={!this.state.userName}>
 								<div
 									className="col-md-8 col-md-offset-2 text-md-center text-sm-center text-xs-center">
-									<div style={styles.description}>
-										<h5>Type a username and press enter</h5>
+									<div className="row">
+										<form onSubmit={this.setUserName}>
+											<h2>
+												<input
+													className="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 text-md-center text-xs-center text-sm-center"
+													type="text"
+													placeholder="Enter your name"
+													onChange={e => this.setState({tempUserName: e.target.value})}
+													style={styles.textBox}
+													required
+													/>
+
+											</h2>
+
+											{/*<button className="btn btn-default" style={styles.buttons}>
+											Submit
+											</button>*/}
+
+										</form>
+
+									</div>
+									<hr/>
+
+									<div style={styles.description} className="row">
+										<h5>Enter your name and press enter</h5>
 										<br/>
-										<h5>Escriba un nombre de usuario y pulse enter</h5>
+										<h5>Escriba su nombre y pulse ENTER</h5>
 										<hr/>
 
 									</div>
-									<form onSubmit={this.setUserName}>
-										<input
-											className="form-control text-md-center text-xs-center text-sm-center"
-											type="text"
-											placeholder="Enter username"
-											onChange={e => this.setState({tempUserName: e.target.value})}
-											style={styles.textBox}
-											required
-											/>
-
-										<button className="btn btn-default" style={styles.buttons}>
-											Submit
-										</button>
-
-									</form>
 
 								</div>
 
@@ -132,14 +139,23 @@ export default class UserName extends React.Component {
 }
 
 const styles = {
+	mainBody: {
+		// backgroundImage: `url('http://cdn.bigbangfish.com/city/429824-awesome-city-wallpaper.jpg')`,
+		// backgroundRepeat: 'no-repeat',
+	},
 	container: {
+		// color: '#fff',
+		height: '100vh',
+		background: '#3B5F9B',
 		paddingTop: 200,
-		color: '#7B6532'
+		color: '#696969'
 	},
 	textBox: {
-		height: 50,
+		height: 75,
 		marginTop: 20,
 		marginBottom: 20,
+		color: '#696969',
+		// fontFamily: 'Bangers',
 
 	},
 	select: {
@@ -147,11 +163,15 @@ const styles = {
 		marginTop: 20
 	},
 	title: {
-		color: '#696969',
+		color: '#fff',
+		fontFamily: 'Bangers',
+		fontSize: 70
 	},
 	description: {
 		paddingTop: 20,
 		paddingBottom: 20,
+		color: '#d8d8d8'
+
 	},
 	buttons: {
 		background: '#fff',

@@ -20,7 +20,7 @@ export default class DisplayUser extends React.Component {
 
 	render() {
 		return (
-			<nav className="navbar navbar-fixed-top navbar-light" style={styles.navbar}>
+			<nav className="navbar navbar-fixed-top navbar-default" style={styles.navbar}>
 				<div className="container">
 					<h4 className="pull-md-left pull-sm-left pull-xs-left">
 						<If condition={this.props.userData.language === "en"}>
@@ -35,7 +35,9 @@ export default class DisplayUser extends React.Component {
 						</span>
 					</h4>
 
-					<h6 className="pull-md-right pull-sm-right pull-xs-right">
+					<h6
+						className="pull-md-right pull-sm-right pull-xs-right"
+						style={styles.navbarRight}>
 						<If condition={this.state.count}>
 							{this.state.count}
 							<span style={styles.users}>
@@ -65,10 +67,13 @@ const styles = {
 	},
 	navbar: {
 		background: '#fff',
-		paddingTop: 10
+		paddingTop: 20
 	},
 	users: {
 		marginLeft: 3,
 		marginRight: 3
+	},
+	navbarRight: {
+		// paddingTop: 10
 	}
 }

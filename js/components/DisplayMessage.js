@@ -52,6 +52,10 @@ export default class DisplayMessage extends React.Component {
 }
 
 const styles = {
+	container: {
+		background: '#fff',
+		color: '#696969'
+	},
 	from: {
 		color: '#7B6532'
 	},

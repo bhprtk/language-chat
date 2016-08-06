@@ -43,6 +43,8 @@ export default class TextBox extends React.Component {
 		this.setState({ messages: [...this.state.messages, message] });
 		this.state.socket.emit('message', message);
 		this.setState({newMessage: ''})
+		window.scrollTo(0,document.body.scrollHeight);
+
 	}
 
 	render() {
@@ -65,7 +67,6 @@ export default class TextBox extends React.Component {
 										onChange={e => this.setState({newMessage: e.target.value})}
 										value={this.state.newMessage}
 										style={styles.textBox}
-										onFocus={() => console.log('fucous')}
 										/>
 
 								</h1>
@@ -96,7 +97,8 @@ const styles = {
 	textBox: {
 		height: 100,
 		marginRight: 10,
-		color: '#696969'
+		color: '#696969',
+		marginTop: 10
 	},
 	from: {
 		color: 'green'

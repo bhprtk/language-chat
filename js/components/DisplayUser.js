@@ -22,7 +22,7 @@ export default class DisplayUser extends React.Component {
 		return (
 			<nav className="navbar navbar-fixed-top navbar-default" style={styles.navbar}>
 				<div className="container">
-					<h4 className="pull-md-left pull-sm-left pull-xs-left">
+					<h1 className="pull-md-left pull-sm-left pull-xs-left">
 						<If condition={this.props.userData.language === "en"}>
 							Hello,
 						</If>
@@ -33,9 +33,9 @@ export default class DisplayUser extends React.Component {
 						<span style={styles.userName}>
 							{this.props.userData.userName}
 						</span>
-					</h4>
+					</h1>
 
-					<h6
+					<h1
 						className="pull-md-right pull-sm-right pull-xs-right"
 						style={styles.navbarRight}>
 						<If condition={this.state.count}>
@@ -51,7 +51,7 @@ export default class DisplayUser extends React.Component {
 							</span>
 							online
 						</If>
-					</h6>
+					</h1>
 
 				</div>
 

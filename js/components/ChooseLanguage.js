@@ -13,7 +13,7 @@ export default class ChooseLanguage extends React.Component {
 
 				</div>
 
-				<div
+				<button
 					className="btn btn-default btn-lg"
 					type="button"
 					style={styles.flagButtons}
@@ -21,9 +21,9 @@ export default class ChooseLanguage extends React.Component {
 					<h1>
 						English
 					</h1>
-				</div>
+				</button>
 
-				<div
+				<button
 					className="btn btn-default btn-lg"
 					type="button"
 					style={styles.flagButtons}
@@ -31,7 +31,7 @@ export default class ChooseLanguage extends React.Component {
 					<h1>
 						Español
 					</h1>
-				</div>
+				</button>
 
 			</div>
 
@@ -48,6 +48,7 @@ const styles = {
 		background: '#fff',
 		borderColor: '#7B6532',
 		borderWidth: 2,
+		padding: 30
 		// height: 200,
 		// width: 350,
 	},

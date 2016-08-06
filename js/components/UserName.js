@@ -98,7 +98,7 @@ export default class UserName extends React.Component {
 								<div style={styles.ifUserName}>
 									<button
 										style={styles.buttons}
-										className="btn btn-default"
+										className="btn btn-default btn-lg"
 										onClick={() => this.setState({userName: null})}>
 										Back
 									</button>
@@ -178,7 +178,8 @@ const styles = {
 	buttons: {
 		background: '#fff',
 		borderColor: '#7B6532',
-		borderWidth: 2
+		borderWidth: 2,
+		color: '#3B5F9B'
 	},
 	ifUserName: {
 		marginTop: '-100'

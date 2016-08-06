@@ -11,7 +11,7 @@ export default class DisplayMessage extends React.Component {
 							<ul>
 								{this.props.messages.map((message, index) => {
 									return <div key={index} className="row">
-										<h1>
+										<h5>
 											<span style={styles.from}>
 
 												<If condition={message.from === this.props.userData.userName}>
@@ -44,7 +44,7 @@ export default class DisplayMessage extends React.Component {
 										</If>
 									</span>
 
-										</h1>
+								</h5>
 							</div>
 						})}
 					</ul>
@@ -88,6 +88,7 @@ const styles = {
 	},
 	message: {
 		marginLeft: 20,
+		color: '#696969'
 	},
 	test: {
 		height: 500,

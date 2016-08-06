@@ -56,34 +56,12 @@ export default class UserName extends React.Component {
 									</strong>
 								</h1>
 
-							</If>
-							<hr/>
-
-							<If condition={this.state.userName}>
-								<button
-									style={styles.buttons}
-									className="btn btn-default"
-									onClick={() => this.setState({userName: null})}>
-									Back
-								</button>
-								<hr/>
-								<h4
-									className="text-md-center text-sm-center text-xs-center"
-									style={styles.hello}>
-									<strong>
-										HELLO {this.state.userName}
-									</strong>
-								</h4>
-							</If>
-
-
-
-							<If condition={!this.state.userName}>
 								<div
-									className="col-md-8 col-md-offset-2 text-md-center text-sm-center text-xs-center">
+									className="text-md-center text-sm-center text-xs-center">
 									<div className="row">
 										<form onSubmit={this.setUserName}>
 											<h2>
+
 												<input
 													className="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1 text-md-center text-xs-center text-sm-center"
 													type="text"
@@ -92,6 +70,8 @@ export default class UserName extends React.Component {
 													style={styles.textBox}
 													required
 													/>
+
+
 
 											</h2>
 
@@ -102,13 +82,11 @@ export default class UserName extends React.Component {
 										</form>
 
 									</div>
-									<hr/>
 
 									<div style={styles.description} className="row">
-										<h5>Enter your name and press enter</h5>
+										<h5>Enter your name and press enter and start chatting in your own language with people who speak other languages.</h5>
 										<br/>
-										<h5>Escriba su nombre y pulse ENTER</h5>
-										<hr/>
+										<h5>Introduzca su nombre y pulse ENTER e iniciar una conversación en su propio idioma con personas que hablan otros idiomas.</h5>
 
 									</div>
 
@@ -117,12 +95,28 @@ export default class UserName extends React.Component {
 							</If>
 
 							<If condition={this.state.userName}>
+								<div style={styles.ifUserName}>
+									<button
+										style={styles.buttons}
+										className="btn btn-default"
+										onClick={() => this.setState({userName: null})}>
+										Back
+									</button>
+									<hr/>
+									<h3
+										className="text-md-center text-sm-center text-xs-center"
+										style={styles.hello}>
+										Hello <strong>{this.state.userName}</strong>
+								</h3>
 
 								<div className="row">
 									<ChooseLanguage setLanguage={this.setLanguage} />
 
 								</div>
+
+								</div>
 							</If>
+
 
 
 						</div>
@@ -158,6 +152,14 @@ const styles = {
 		// fontFamily: 'Bangers',
 
 	},
+	hello: {
+		color: '#fff'
+	},
+	enterButton: {
+		height: 75,
+		marginTop: 20,
+		marginBottom: 20,
+	},
 	select: {
 		height: 50,
 		marginTop: 20
@@ -177,5 +179,8 @@ const styles = {
 		background: '#fff',
 		borderColor: '#7B6532',
 		borderWidth: 2
+	},
+	ifUserName: {
+		marginTop: '-100'
 	}
 }

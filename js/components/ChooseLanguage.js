@@ -5,27 +5,33 @@ export default class ChooseLanguage extends React.Component {
 		console.log('this.props.userName', this.props.userName);
 		return (
 			<div className="text-md-center text-sm-center text-xs-center" style={styles.flags}>
+				<div style={styles.description}>
+					<h3>Choose your prefered language and start chatting</h3>
+					<br/>
+					<h3>Elegir el idioma preferido y empezar a chatear</h3>
+					<hr/>
 
-				<h4>Choose your prefered language</h4>
-				<br/>
-				<h4>Elija su idioma preferido</h4>
-				<hr/>
+				</div>
 
-				<button
+				<div
 					className="btn btn-default btn-lg"
 					type="button"
 					style={styles.flagButtons}
 					onClick={() => this.props.setLanguage('en')}>
-					English
-				</button>
+					<h1>
+						English
+					</h1>
+				</div>
 
-				<button
+				<div
 					className="btn btn-default btn-lg"
 					type="button"
 					style={styles.flagButtons}
 					onClick={() => this.props.setLanguage('es')}>
-					Español
-				</button>
+					<h1>
+						Español
+					</h1>
+				</div>
 
 			</div>
 
@@ -41,6 +47,11 @@ const styles = {
 		margin: 10,
 		background: '#fff',
 		borderColor: '#7B6532',
-		borderWidth: 2
+		borderWidth: 2,
+		// height: 200,
+		// width: 350,
 	},
+	description: {
+		color: '#fff'
+	}
 }

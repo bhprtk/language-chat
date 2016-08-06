@@ -75,7 +75,7 @@ const styles = {
 	},
 	container: {
 		paddingTop: 100,
-		maringBottom: 50
+		marginBottom: 50
 	},
 	sentAt: {
 		fontSize: 10,

@@ -43,49 +43,58 @@ export default class TextBox extends React.Component {
 		this.setState({ messages: [...this.state.messages, message] });
 		this.state.socket.emit('message', message);
 		this.setState({newMessage: ''})
-		window.scrollTo(0,document.body.scrollHeight);
+		window.scrollTo(0, document.body.scrollHeight);
 
 	}
 
 	render() {
 		return (
-			<div className="container" style={styles.container}>
+			<div>
+				<div className="container" style={styles.container}>
 
-				<DisplayUser userData={this.props.userNameData} socket={this.state.socket}/>
+					<DisplayUser userData={this.props.userNameData} socket={this.state.socket}/>
 
-				<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
+					<DisplayMessage messages={this.state.messages} userData={this.props.userNameData}/>
 
+				</div>
+				<div>
 					<nav className="navbar navbar-fixed-bottom navbar-light" style={styles.navbar}>
 
-							<form onSubmit={this.newMessage}>
+						<form onSubmit={this.newMessage}>
 
-								<h1>
-									<input
-										className="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1"
-										type="text"
-										placeholder="Enter a message.."
-										onChange={e => this.setState({newMessage: e.target.value})}
-										value={this.state.newMessage}
-										style={styles.textBox}
-										/>
+							<h1>
+								<input
+									className="col-md-10 col-sm-10 col-md-offset-1 col-sm-offset-1"
+									type="text"
+									placeholder="Enter a message.."
+									onChange={e => this.setState({newMessage: e.target.value})}
+									value={this.state.newMessage}
+									style={styles.textBox}
+									/>
 
-								</h1>
-{/*
+							</h1>
+							{/*
 								<button className="btn btn-success-outline btn-lg">
-									Send
+								Send
 								</button>*/}
 
 							</form>
 
-					</nav>
+						</nav>
+
+				</div>
+
+			</div>
 
 
-		</div>
 		)
 	}
 }
 
 const styles = {
+	container: {
+		marginBottom: 100
+	},
 	navbar: {
 		background: '#fff'
 	},

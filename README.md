@@ -1,5 +1,5 @@
 # Inter Language Chat App
-A chap room app where you can chat to other people speaking different languages in your own language.
+A chat room app where you can chat to other people speaking different languages in your own language.
 
 ## Build Status
 [![Build Status](https://travis-ci.org/bhprtk/language-chat.svg?branch=master)](https://travis-ci.org/bhprtk/language-chat)
